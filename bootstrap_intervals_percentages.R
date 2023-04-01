@@ -7,7 +7,7 @@
 	sourceCpp("CI_NW.cpp")
   	NumIt = 1000
   	ngrid = 100
-  	n = 100
+  	n = 500
   	m = 2
   	sigma = 0.1
 
