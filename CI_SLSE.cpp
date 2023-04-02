@@ -31,6 +31,7 @@ typedef struct
 data_object;
 
 double  f0(double x);
+double  fprime(int m, double tt[], double pp[], double h, double u);
 int     compare(const void *a, const void *b);
 void    order_data(int n, double **data);
 void    convexminorant(int n, double cumw[], double cs[], double yy[]);
@@ -39,8 +40,7 @@ double  Kprime(double x);
 double  KK(double x);
 void    data_bootstrap(int n, double **data, double SLSE_data[], double residu[],
                     double **bootstrap_data, int seed);
-void regression_estimate(int m, double tt[], int ngrid, double grid[], double h, double p[], double ff[], double fsmooth[]);
-double  f0(double x);
+void    regression_estimate(int m, double tt[], int ngrid, double grid[], double h, double h0, double p[], double ff[], double fsmooth[]);
 
 
 
@@ -54,7 +54,7 @@ List CI_SLSE(NumericMatrix X, int N, int seed1)
     double  *lowbound,*upbound,**f3,*f4;
     double  **data,**bootstrap_data,*residu;
     double  *cumw,*cs,*ff,*tt,*pp,*tt_bootstrap,*pp_bootstrap,*ff_bootstrap,*data0,*data_bootstrap0;
-    double  h,h2,*grid,*SLSE_data,*SLSE;
+    double  h,h0,*grid,*SLSE_data,*SLSE;
     double  *SLSE_bootstrap,*SLSE2;
     double  mean_residu;
     
@@ -64,7 +64,7 @@ List CI_SLSE(NumericMatrix X, int N, int seed1)
     ngrid=100;
     
     h= 0.5*pow(n,-1.0/5);
-    h2= 0.7*pow(n,-1.0/9);
+    h0= 0.7*pow(n,-1.0/9);
     
     NumIt=1000;
     
@@ -171,9 +171,9 @@ List CI_SLSE(NumericMatrix X, int N, int seed1)
     for (i=1;i<=m;i++)
         ff[i]=ff[i-1]+pp[i];
     
-    regression_estimate(m,tt,ngrid,grid,h,pp,ff,SLSE);
-    regression_estimate(m,tt,n,data0,h2,pp,ff,SLSE_data);
-    regression_estimate(m,tt,ngrid,grid,h2,pp,ff,SLSE2);
+    regression_estimate(m,tt,ngrid,grid,h,h0,pp,ff,SLSE);
+    regression_estimate(m,tt,n,data0,h0,h0,pp,ff,SLSE_data);
+    regression_estimate(m,tt,ngrid,grid,h0,h0,pp,ff,SLSE2);
     
     for (i=1;i<=n;i++)
         residu[i]=data[i][1]-SLSE_data[i];
@@ -224,7 +224,7 @@ List CI_SLSE(NumericMatrix X, int N, int seed1)
         
         // bootstrap SLSE at points of the grid
         
-        regression_estimate(m_bootstrap,tt_bootstrap,ngrid,grid,h,pp_bootstrap,ff_bootstrap,SLSE_bootstrap);
+        regression_estimate(m_bootstrap,tt_bootstrap,ngrid,grid,h,h0,pp_bootstrap,ff_bootstrap,SLSE_bootstrap);
         
         for (i=1;i<ngrid;i++)
             f3[iter][i] = SLSE_bootstrap[i]-SLSE2[i];
@@ -290,6 +290,42 @@ List CI_SLSE(NumericMatrix X, int N, int seed1)
 double f0(double x)
 {
   return SQR(x)+x/5;
+}
+
+double fprime(int m, double tt[], double pp[], double h, double u)
+{
+    int i;
+    double t,sum=0;
+    
+    if (u>=h && u<=1-h)
+    {
+        for (i=1;i<=m;i++)
+        {
+            t=(u-tt[i])/h;
+            sum += Kprime(t)*pp[i]/SQR(h);
+        }
+    }
+    else
+    {
+        if (u<h)
+        {
+            for (i=1;i<=m;i++)
+            {
+                t=(h-tt[i])/h;
+                sum += Kprime(t)*pp[i]/SQR(h);
+            }
+        }
+        else
+        {
+            for (i=1;i<=m;i++)
+            {
+                t=(1-h-tt[i])/h;
+                sum += Kprime(t)*pp[i]/SQR(h);
+            }
+        }
+    }
+   
+    return sum;
 }
 
 void order_data(int n, double **data)
@@ -394,7 +430,7 @@ double Kprime(double x)
     return y;
 }
 
-void regression_estimate(int m, double tt[], int ngrid, double grid[], double h, double p[], double ff[], double fsmooth[])
+void regression_estimate(int m, double tt[], int ngrid, double grid[], double h, double h0, double p[], double ff[], double fsmooth[])
 {
     int i,k;
     double a,u,t;
@@ -419,9 +455,10 @@ void regression_estimate(int m, double tt[], int ngrid, double grid[], double h,
             for (k=1;k<=m;k++)
             {
                 t=(h-tt[k])/h;
-                a += (KK(t)+(u-h)*K(t)/h+0.5*SQR(u-h)*Kprime(t)/SQR(h))*p[k];
-                //a += (KK(t)+(u-h)*K(t)/h)*p[k];
+                //a += (KK(t)+(u-h)*K(t)/h+0.5*SQR(u-h)*Kprime(t)/SQR(h))*p[k];
+                a += (KK(t)+(u-h)*K(t)/h)*p[k];
             }
+            a += 0.5*SQR(u-h)*fprime(m,tt,p,h0,h);
         }
         
         if (u>1-h)
@@ -429,9 +466,10 @@ void regression_estimate(int m, double tt[], int ngrid, double grid[], double h,
             for (k=1;k<=m;k++)
             {
                 t=(1-h-tt[k])/h;
-                a += (KK(t)+(u-(1-h))*K(t)/h+0.5*SQR(u-(1-h))*Kprime(t)/SQR(h))*p[k];
-                //a += (KK(t)+(u-(1-h))*K(t)/h)*p[k];
+                //a += (KK(t)+(u-(1-h))*K(t)/h+0.5*SQR(u-(1-h))*Kprime(t)/SQR(h))*p[k];
+                a += (KK(t)+(u-(1-h))*K(t)/h)*p[k];
             }
+            a += 0.5*SQR(u-(1-h))*fprime(m,tt,p,h0,1-h);
         }
         fsmooth[i]=ff[0]+a;
     }

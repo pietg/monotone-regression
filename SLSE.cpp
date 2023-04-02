@@ -37,7 +37,7 @@ void    convexminorant(int n, double cumw[], double cs[], double yy[]);
 double  K(double x);
 double  Kprime(double x);
 double  KK(double x);
-void regression_estimate(int m, double tt[], int ngrid, double grid[], double h, double p[], double ff[], double fsmooth[]);
+void    regression_estimate(int m, double tt[], int ngrid, double grid[], double h, double p[], double ff[], double fsmooth[]);
 double  f0(double x);
 
 
