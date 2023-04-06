@@ -51,7 +51,7 @@ double MSE_regression(int n, int ngrid, double grid[], int B, double **data, dou
 
 // [[Rcpp::export]]
 
-List bandwidth(NumericMatrix X, int N, int seed1)
+List bandwidth(NumericMatrix X, int N, int seed1, int BB)
 {
     int     n,m,B,ngrid,i,j,seed;
     int     iter,NumIt;
@@ -67,12 +67,12 @@ List bandwidth(NumericMatrix X, int N, int seed1)
     ngrid=100;
     
     h= 0.5*pow(n,-1.0/5);
-    h0= 0.7*pow(n,-1.0/9);
+    h0= 0.7*pow(n,-1.0/7);
     
     hmin=100;
     
     NumIt=100;
-    B=1000;
+    B=(int)BB;
     
     grid = new double[ngrid+1];
     
