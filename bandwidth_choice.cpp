@@ -30,6 +30,7 @@ typedef struct
 }
 data_object;
 
+double  f(double x);
 double  fprime(int m, double tt[], double pp[], double h, double u);
 int     compare(const void *a, const void *b);
 void    order_data(int n, double **data);
@@ -40,7 +41,11 @@ double  KK(double x);
 void    data_bootstrap(int n, double **data, double SLSE_data[], double residual[],
                     double **bootstrap_data, int seed);
 void    regression_estimate(int m, double tt[], int ngrid, double grid[], double h, double h0, double p[], double ff[], double fsmooth[]);
-double MSE_regression(int n,  double data0[], int B, double **data, double **bootstrap_data,  double SLSE_data[], double SLSE_bootstrap[], double tt[], double pp[], double tt_bootstrap[], double pp_bootstrap[], double ff_bootstrap[], double residual[], double h, double h0, int seed);
+//double MSE_regression(int n,  double data0[], int B, double **data, double **bootstrap_data,  double SLSE_data[], double SLSE_bootstrap[], double tt[], double pp[], double tt_bootstrap[], double pp_bootstrap[], double ff_bootstrap[], double residual[], double h, double h0, int seed);
+
+double MSE_regression(int n, int ngrid, double grid[], int B, double **data, double **bootstrap_data,  double SLSE_data[],
+                      double SLSE2[], double SLSE_bootstrap[], double tt[], double pp[], double tt_bootstrap[], double pp_bootstrap[],
+                       double ff_bootstrap[], double residual[], double h, double h0, int seed);
 
 
 
@@ -52,7 +57,7 @@ List bandwidth(NumericMatrix X, int N, int seed1)
     int     iter,NumIt;
     double  **data,**bootstrap_data,*residual;
     double  *cumw,*cs,*ff,*tt,*pp,*tt_bootstrap,*pp_bootstrap,*ff_bootstrap,*data0;
-    double  h,h0,hmin,*grid,*SLSE_data,*MSE;
+    double  h,h0,hmin,*grid,*SLSE_data,*SLSE2,*MSE;
     double  *SLSE_bootstrap;
     double  mean_residual,min;
     
@@ -106,8 +111,9 @@ List bandwidth(NumericMatrix X, int N, int seed1)
     pp_bootstrap = new double[n+1];
     ff_bootstrap = new double[n+1];
     
-    SLSE_bootstrap = new double[n+1];
+    SLSE_bootstrap = new double[ngrid+1];
     SLSE_data = new double[n+1];
+    SLSE2 = new double[ngrid+1];
     
     MSE = new double[NumIt+1];
     
@@ -153,6 +159,7 @@ List bandwidth(NumericMatrix X, int N, int seed1)
         ff[i]=ff[i-1]+pp[i];
     
     regression_estimate(m,tt,n,data0,h0,h0,pp,ff,SLSE_data);
+    regression_estimate(m,tt,ngrid,grid,h0,h0,pp,ff,SLSE2);
     
     for (i=1;i<=n;i++)
         residual[i]=data[i][1]-SLSE_data[i];
@@ -172,7 +179,9 @@ List bandwidth(NumericMatrix X, int N, int seed1)
         seed +=B;
         h = iter*0.01*pow(n,-1.0/5);
                 
-        MSE[iter] = MSE_regression(n,data0,B,data,bootstrap_data,SLSE_data,SLSE_bootstrap,tt,pp, tt_bootstrap,pp_bootstrap,ff_bootstrap,residual,h,h0,seed);
+        MSE[iter] =
+        MSE_regression(n,ngrid,grid,B,data,bootstrap_data,SLSE_data,SLSE2, SLSE_bootstrap,tt,pp,tt_bootstrap,pp_bootstrap,ff_bootstrap,residual,h,h0,seed);
+        //MSE_regression(n,data0,B,data,bootstrap_data,SLSE_data,SLSE_bootstrap,tt,pp, tt_bootstrap,pp_bootstrap,ff_bootstrap,residual,h,h0,seed);
 
         
         if (MSE[iter]<min)
@@ -219,13 +228,17 @@ List bandwidth(NumericMatrix X, int N, int seed1)
     delete[] cumw; delete[] cs; delete[] ff;  delete[] residual;
     
     delete[] tt; delete[] pp; delete[] tt_bootstrap; delete[] pp_bootstrap;
-    delete[] ff_bootstrap; delete[] SLSE_bootstrap; delete[] SLSE_data;
-    
+    delete[] ff_bootstrap; delete[] SLSE_bootstrap; delete[] SLSE_data; delete[] SLSE2;
     
     return out;
 }
 
-double MSE_regression(int n,  double data0[], int B, double **data, double **bootstrap_data,  double SLSE_data[], double SLSE_bootstrap[], double tt[], double pp[], double tt_bootstrap[], double pp_bootstrap[], double ff_bootstrap[], double residual[], double h, double h0, int seed)
+double f(double x)
+{
+    return exp(4 * (x - 0.5))/(1+exp(4 * (x - 0.5)));
+}
+
+double MSE_regression(int n, int ngrid, double grid[], int B, double **data, double **bootstrap_data,  double SLSE_data[], double SLSE2[], double SLSE_bootstrap[], double tt[], double pp[], double tt_bootstrap[], double pp_bootstrap[], double ff_bootstrap[], double residual[], double h, double h0, int seed)
 {
     int i,j,iter,m_bootstrap,seed1;
     double MSE,*MSE1,*cumw,*cs;
@@ -273,13 +286,18 @@ double MSE_regression(int n,  double data0[], int B, double **data, double **boo
             ff_bootstrap[i]=ff_bootstrap[i-1]+pp_bootstrap[i];
         
         // bootstrap SLSE at observation points
-        
-        regression_estimate(m_bootstrap,tt_bootstrap,n,data0,h,h0,pp_bootstrap,ff_bootstrap,SLSE_bootstrap);
+                
+        regression_estimate(m_bootstrap,tt_bootstrap,ngrid,grid,h,h0,pp_bootstrap,ff_bootstrap,SLSE_bootstrap);
         
         MSE1[iter] =0;
-        for (i=1;i<=n;i++)
-            MSE1[iter] += SQR(SLSE_bootstrap[i]-SLSE_data[i]);
+        //for (i=1;i<=n;i++)
+            //MSE1[iter] += SQR(SLSE_bootstrap[i]-SLSE_data[i]);
+        
+        for (i=1;i<=ngrid;i++)
+            MSE1[iter] += SQR(SLSE_bootstrap[i]-SLSE2[i]);
     }
+    
+    
     
     MSE=0;
     for (iter=1;iter<=B;iter++)

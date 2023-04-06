@@ -5,12 +5,11 @@
 	library(Rcpp)
 	sourceCpp("bandwidth_choice.cpp")
 
-  	n = 100
+  	n = 1000
   	m = 2
   	sigma = 0.1
 
   	f <- function(x) {x^2+x/5}
-  	#f <- function(x) {exp(4 * (x - 0.5))/(1+exp(4 * (x - 0.5)))}
   	x0 <-seq(0,1,by=0.01)
    	y0<-f(x0)
    	
