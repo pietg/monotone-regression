@@ -67,7 +67,7 @@ List bandwidth(NumericMatrix X, int N, int seed1, int BB)
     ngrid=100;
     
     h= 0.5*pow(n,-1.0/5);
-    h0= 0.7*pow(n,-1.0/7);
+    h0= 0.7*pow(n,-1.0/9);
     
     hmin=100;
     

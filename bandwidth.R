@@ -7,7 +7,11 @@
 
   	n = 500
   	m = 2
+  	
+  	#standard deviation error
   	sigma = 0.1
+  	
+  	# Number of bootstrap samples:
   	B=10000
 
   	f <- function(x) {x^2+x/5}
