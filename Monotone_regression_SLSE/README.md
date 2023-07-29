@@ -9,4 +9,4 @@ A boxplot of 1000 values of the estimates of f_0(0.6) for both estimators are pr
 
 The bandwidth selection, as described in Section 4 of the manuscript SLSE.pdf is demonstrated by the R script bandwidth.R.
 
-In all instnaces one can see the output by typing "output" (for example the minimizing constant c in h=cn^{-1/5} for bandwidth.R) in the console window.
+In all instances one can see the output by typing "output" (for example the minimizing constant c in h=cn^{-1/5} for bandwidth.R) in the console window.
