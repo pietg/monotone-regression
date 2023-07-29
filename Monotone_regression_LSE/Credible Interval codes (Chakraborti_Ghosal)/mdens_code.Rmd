@@ -1,0 +1,235 @@
+---
+title: "Monotone density point-wise credible interval"
+author: "Moumita Chakraborty"
+output: html_document
+---
+The function `credInt.bounded()' takes $X$ in $(0, 1)$ as input, 
+and gives the unadjusted and adjusted projection-posterior credible 
+intervals, along with a frequentist confidence interval at a desired
+target coverage level (default is 0.95)
+
+The function `credible.interval.unbounded()' takes the data $X>0$ as input, 
+and gives the unadjusted and adjusted projection-posterior credible 
+intervals, along with a frequentist confidence interval at a desired
+target coverage level (default is 0.95)
+
+```{r, include=FALSE}
+library("fdrtool")
+library(stats)
+library(data.table)
+library(xtable)
+library(MCMCpack) # for rdirichlet
+library(hbmem)
+library(dplyr)
+library(isotone)
+```
+
+```{r, echo=FALSE}
+#load the A-inverse function for the recalibration values
+load("C:/Users/MChakraborty/Desktop/Shape Constaints/Ainv.rda")
+
+grenEstimateBayes.bdd <- function(y, w, t1){
+  J <- length(w)
+  w <- w / sum(w) # normalizing the weights
+  xval=cumsum(w)
+  fit <- gpava(xval, -y)
+  r <- stepfun(xval, -c(fit$x, fit$x[J]))
+  t <- r(t1) #value of the isotonized step function at given t1
+  return(list(r, t))
+}
+
+
+credInt.bounded <- function(X, x0=0.4, credibility.level=0.95, sieve.interval.95=T, nPostSamp=1000){
+  n <- length(X)
+  J <- floor((n^(1/3))*log(n))
+  xjKnots <- c(1 : J) * 1 / J
+  Nj <- NULL
+  for (j in 1:J){
+    Nj <- c(Nj, sum(X <= xjKnots[j] & X > (xjKnots[j] - 1/J)))
+  }
+  alpha <- rep(1, J)
+  alpha.level <- (1-credibility.level) / 2
+  corrected.cred <- A.inv(credibility.level)
+  correct.level <- (1-corrected.cred) / 2
+  
+  d.x <- density(X)
+  d.x.fun <- stepfun(d.x$x, c(d.x$y[1],d.x$y))
+  d.x.der <- stepfun(d.x$x[-1], c(0, d.x$y[-1]-d.x$y[-length(d.x$y)])/
+                       c(1, d.x$x[-1]-d.x$x[-length(d.x$x)]))
+  a <- sqrt(d.x.fun(x0))
+  b <- abs(d.x.der(x0))/2
+  C0 <- 2*b*(a/b)^(2/3)
+
+  gx0.sample <- NULL
+  for(i in 1: nPostSamp){
+    theta <- rdirichlet(1, alpha+Nj)
+    theta.function <- grenEstimateBayes.bdd(c(theta), rep(1, J), x0)
+    gx0.sample <- c(gx0.sample, J*theta.function[[2]])
+  }
+  
+  lower.limit <- quantile(gx0.sample, alpha.level)
+  upper.limit <- quantile(gx0.sample, 1 - alpha.level)
+  #cvrg <- ifelse((upper.limit-d0)*(d0-lower.limit) > 0, 1, 0)
+  interval.obs <- cbind(lower.limit, upper.limit)
+  
+  lower.limit <- quantile(gx0.sample, correct.level)
+  upper.limit <- quantile(gx0.sample, 1 - correct.level)
+  #cvrg <- ifelse((upper.limit-d0)*(d0-lower.limit) > 0, 1, 0)
+  interval.correct <- cbind(lower.limit, upper.limit)
+  
+  interval.sieve = NULL
+  if(sieve.interval.95 == T){
+    chern.quant=0.998 # from quantiles of the Chernoff distribution
+    sieve.est <- J*grenEstimateBayes.bdd(Nj/n, rep(1, J), x0)[[2]]
+    lower.limit <- sieve.est - n^(-1/3)*chern.quant*C0
+    upper.limit <- sieve.est + n^(-1/3)*chern.quant*C0
+    #cvrg <- ifelse((upper.limit-d0)*(d0-lower.limit) > 0, 1, 0)
+    interval.sieve <- cbind(lower.limit, upper.limit)
+  }
+
+  return(list(interval.obs, interval.correct, interval.sieve))
+  #return(list(c(lower.limit, upper.limit), credibility.level))
+} 
+
+```
+Example:
+```{r}
+set.seed(101)
+x0 <- 0.4
+d00 <- dbeta(x0, 1, 3)
+n <- 100;
+X <- rbeta(n, 1,3)
+cred0 <- credInt.bounded(X, x0=x0, credibility.level=0.95,
+                                  nPostSamp = 1000)
+```
+The $100(1-\alpha)\%$ projection-posterior credible interval is
+```{r}
+ cred0[[1]] # unadjusted credible interval
+```
+The corrected projection-posterior credible interval with asymptotic coverage  $100(1-\alpha)\%$ is
+```{r}
+ cred0[[2]] # adjusted credible interval
+```
+The $95\%$ confidence interval based on the sieve-MLE method is
+```{r}
+ cred0[[3]] # confidence interval using sieve-MLE
+```
+The true value of $g(x_0)$ is
+```{r}
+dbeta(x0, 1, 3)
+
+```
+################################################################
+
+Unbounded domain
+```{r, echo=FALSE}
+grenEstimateBayes.unbd <- function(y, w, grid.points){
+  J <- length(w)
+  w <- w / sum(w) # normalizing the weights
+  y1 <- cumsum(y*w) # cumulative sum vector of y
+  ll <- gcmlcm(cumsum(w), y1, type = "lcm") # least concave majorant of 
+  # the cumulative sum vector of y
+  if(length(ll$x.knots)>1){
+    y11 <- c(ll$slope.knots[1], ll$slope.knots, ll$slope.knots[length(ll$slope.knots)])
+    stepfunction <- stepfun(ll$x.knots, y11)
+  }
+  if(length(ll$x.knots)<=1){
+    stepfunction <- stepfun(c(0), c(ll$slope.knots, ll$slope.knots), right=TRUE)
+  }
+  fw <- stepfunction(cumsum(w))
+  r <- stepfun(grid.points, c(fw[1], fw))
+  #t <- r(cumsum(w)[min(which(cumsum(w)>=t1))]) #value of the isotonized step function at given t1
+  return(r)
+}
+
+credible.interval.unbounded <- function(X, x0=1.5, credibility.level=0.95,
+                                        nPostSamp=1000, plot.function=FALSE){
+  a <- 2
+  n <- length(X)
+  Kn <- floor(log(n, base=a)/2)
+  J <- floor((n^(1/3))*(log(n)))
+  J1 <- J*(Kn+1)
+  Tn <- a^Kn
+
+  xjKnots.dots <- c(0, a^(c(0, 1:Kn)))
+  xjKnots <- NULL#seq(1/J, 1, len=J)
+  for(i in 1: (length(xjKnots.dots)-1)){
+    xjKnots <- c(xjKnots, seq(xjKnots.dots[i]+1/J, xjKnots.dots[i+1], len=J))
+    }
+
+  Nj <- sum(X <= xjKnots[1] & X > 0)
+  for (j in 2:J1){
+    Nj <- c(Nj, sum(X <= xjKnots[j] & X > xjKnots[j-1]))
+  }
+    alpha <- rep(1, J1)
+  wt <- rep(0, J1)
+  wt[1:J] <- J
+  for(i in 1:Kn){
+    wt[(i*J + 1) : ((i+1)*J)] <- J / (a^i - a^(i-1))
+  }
+  postMean <- alpha+Nj
+  alpha.level <- (1-credibility.level) / 2
+
+  if(plot.function==TRUE){
+    xx <- seq(0.01, Tn+0.5, 0.01)
+    xval <- xx
+    L0 <- rep(0, length(xval))
+    L0[between(xval, 0, 1)] <- 1
+    L0[xval==1] <- 1
+    for(i in 1:Kn){
+      L0[between(xval, a^(i-1), a^i)] <- a^i - a^(i-1)
+      L0[xval==a^i] <- a^i - a^(i-1)
+      }
+    J.by.L0 <- J / L0
+
+    hist(X, probability = TRUE)
+    function.sample <- NULL
+    gx0.sample <- NULL
+    L0.x0 <- ifelse(x0>1, a^(ceiling(log(x0, base=a))) - a^(floor(log(x0, base=a))), 1)
+    J.by.L0.x0 <- J/L0.x0 
+    for(i in 1:nPostSamp){
+      theta <- rdirichlet(1, postMean)
+      theta1.function <- grenEstimateBayes.unbd(theta, wt, xjKnots)
+      theta1 <- J.by.L0*theta1.function(xx)
+      #lines(xx, yy11, xlab="x", ylab="f(x)", col="grey")
+      function.sample <- cbind(function.sample, theta1)
+      gx0.sample <- c(gx0.sample, J.by.L0.x0 * theta1.function(x0))
+    }
+    lines(xx, apply(function.sample,1, FUN=function(x){quantile(x, alpha.level)}), col="blue", lwd=2)
+    lines(xx, apply(function.sample,1, FUN=function(x){quantile(x, 1-alpha.level)}), col="blue", lwd=2)
+    lines(xx, rowMeans(function.sample), col="blue", lty="dashed")
+    legend(4, 0.6, legend=c(paste(100*credibility.level, "% projection-posterior credible limits"),"Projection-posterior mean"), lty=1:2, cex=0.7)
+  }
+  
+  if(plot.function==FALSE){
+    gx0.sample <- NULL
+    L0.x0 <- ifelse(x0>1, a^(ceiling(log(x0, base=a))) - a^(floor(log(x0, base=a))), 1)
+    J.by.L0.x0 <- J/L0.x0 
+    for(i in 1:nPostSamp){
+      theta <- rdirichlet(1, postMean)
+      theta1.function <- grenEstimateBayes.unbd(theta, wt, xjKnots)
+      gx0.sample <- c(gx0.sample, J.by.L0.x0 * theta1.function(x0))
+    }
+  }
+
+lower.limit <- quantile(gx0.sample, alpha.level)
+upper.limit <- quantile(gx0.sample, 1 - alpha.level)
+print(paste(credibility.level*100,"% point-wise posterior-projection credible interval= (",
+              sep=" ", lower.limit,",", upper.limit, ")"))
+#return(list(c(lower.limit, upper.limit), credibility.level))
+}
+```
+Example (unbounded):
+```{r}
+set.seed(101)
+n=1000
+X <- rexp(n)
+x0 <- 1.5
+credible.interval.unbounded(X, x0=x0, credibility.level=0.95, nPostSamp = 1000, plot.function = TRUE)
+```
+The true value of $g(x_0)$ is
+```{r}
+dexp(x0)
+
+```
+

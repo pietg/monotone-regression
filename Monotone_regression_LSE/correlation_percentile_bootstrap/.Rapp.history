@@ -1,0 +1,2929 @@
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- n^(-1/5)#
+  output <- classic_bootstrap(n,bandwidth)#
+	B <- output$SLSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y1,lwd=1,lty=1,type='s')#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   segments(x2,y1,x2,y2)
+u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- n^(-1/5)#
+  output <- classic_bootstrap(n,bandwidth)#
+	B <- output$SLSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   	u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')
+u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- n^(-1/5)#
+  output <- classic_bootstrap(n,bandwidth)#
+	#B <- output$SLSE#
+	#C <- output$CI_LSE#
+	#D <- output$percentages#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 100#
+	bandwidth <- 0.5*n^(-1/5)#
+  output <- classic_bootstrap(n,bandwidth)#
+	#B <- output$SLSE#
+	#C <- output$CI_LSE#
+	#D <- output$percentages#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   	u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 100#
+	bandwidth <- 1.5*n^(-1/5)#
+  output <- classic_bootstrap(n,bandwidth)#
+	#B <- output$SLSE#
+	#C <- output$CI_LSE#
+	#D <- output$percentages#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   	u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 500#
+	bandwidth <- n^(-1/5)#
+  output <- classic_bootstrap(n,bandwidth)#
+	#B <- output$SLSE#
+	#C <- output$CI_LSE#
+	#D <- output$percentages#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   	u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2
+B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 500#
+	bandwidth <- n^(-1/5)#
+  output <- classic_bootstrap(n,bandwidth)#
+	#B <- output$SLSE#
+	#C <- output$CI_LSE#
+	#D <- output$percentages#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   	u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 500#
+	bandwidth <- n^(-1/5)#
+  output <- classic_bootstrap(n,bandwidth)#
+	#B <- output$SLSE#
+	#C <- output$CI_LSE#
+	#D <- output$percentages#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- n^(-1/5)#
+  output <- classic_bootstrap(n,bandwidth)#
+	#B <- output$SLSE#
+	#C <- output$CI_LSE#
+	#D <- output$percentages#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   	u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 500#
+	bandwidth <- n^(-1/5)#
+  output <- classic_bootstrap(n,bandwidth)#
+	#B <- output$SLSE#
+	#C <- output$CI_LSE#
+	#D <- output$percentages#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   	u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+#B <- output$SLSE#
+	#C <- output$CI_LSE#
+	#D <- output$percentages#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- n^(-1/5)#
+  output <- classic_bootstrap(n,bandwidth)#
+	#B <- output$SLSE#
+	#C <- output$CI_LSE#
+	#D <- output$percentages#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   	u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+#B <- output$SLSE#
+	#C <- output$CI_LSE#
+	#D <- output$percentages#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y1),max(y2)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+#B <- output$SLSE#
+	#C <- output$CI_LSE#
+	#D <- output$percentages#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- n^(-1/5)#
+  output <- classic_bootstrap(n,bandwidth)#
+	#B <- output$SLSE#
+	#C <- output$CI_LSE#
+	#D <- output$percentages#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- n^(-1/5)#
+  output <- classic_bootstrap(n,bandwidth)#
+	#B <- output$SLSE#
+	#C <- output$CI_LSE#
+	#D <- output$percentages#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   	u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- n^(-1/5)#
+  output <- classic_bootstrap(n,bandwidth)#
+	#B <- output$SLSE#
+	#C <- output$CI_LSE#
+	#D <- output$percentages#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   	u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+#B <- output$SLSE#
+	#C <- output$CI_LSE#
+	#D <- output$percentages#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+B <- output$SLSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x2,y1,lwd=2,type ="s",col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,col="blue")#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- n^(-1/5)#
+  output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,col="blue")#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   	u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,col="blue")#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,col="blue")#
+   #lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,col="blue")#
+   #lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,col="blue")#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,col="blue")#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- n^(-1/5)#
+  output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,col="blue")#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+B
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- n^(-1/5)#
+  output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,col="blue")#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,col="blue",type='s')#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+B<-read.table("LSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	#B<-read.table("LSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 500#
+	bandwidth <- n^(-1/5)#
+  output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	#B<-read.table("LSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   	u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+#B<-read.table("LSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 500#
+	bandwidth <- n^(-1/5)#
+  output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	#B<-read.table("LSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 500#
+	bandwidth <- n^(-1/5)#
+  output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	#B<-read.table("LSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   	u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- n^(-1/5)#
+  output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	#B<-read.table("LSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   	u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	#B<-read.table("LSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 500#
+	bandwidth <- n^(-1/5)#
+  output <- smooth_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+ls()
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 500#
+	bandwidth <- n^(-1/5)#
+  output <- smooth_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 500#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   points(u1,v1,pch = 20)
+f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20)
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 500#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20)
+u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20)
+D<-read.table("percentages.txt")
+u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 500#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20)
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 100#
+	bandwidth <- 0.5*n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 500#
+	bandwidth <- 0.5*n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- 0.5*n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20)
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   points(u1,v1,pch = 20)
+plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20)
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 100#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   #lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   points(u1,v1,pch = 20)
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   #lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 5000#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   #lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 10000#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   #lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")
+u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	#lines(c(0,1),c(0.05,0.05),col="red")#
+	lines(c(0,1),c(0.03676,0.03676),col="red")
+B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   #lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="blue")#
+	lines(c(0,1),c(0.03676,0.03676),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 20000#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   #lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	#lines(c(0,1),c(0.05,0.05),col="blue")#
+	lines(c(0,1),c(0.03676,0.03676),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   #lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	#lines(c(0,1),c(0.05,0.05),col="blue")#
+	lines(c(0,1),c(0.03676,0.03676),col="red")
+plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   #lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20)
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   #lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	#lines(c(0,1),c(0.05,0.05),col="blue")#
+	lines(c(0,1),c(0.03676,0.03676),col="red")
+plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   #lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20)
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   #lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	#lines(c(0,1),c(0.05,0.05),col="blue")#
+	lines(c(0,1),c(0.03676,0.03676),col="red")
+plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   #lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20)
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 100#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   #lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	#lines(c(0,1),c(0.05,0.05),col="blue")#
+	lines(c(0,1),c(0.03676,0.03676),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 1000#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   #lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	#lines(c(0,1),c(0.05,0.05),col="blue")#
+	lines(c(0,1),c(0.03676,0.03676),col="red")
+plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="blue")#
+	#lines(c(0,1),c(0.03676,0.03676),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 500#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   #lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="blue")#
+	#lines(c(0,1),c(0.03676,0.03676),col="red")
+plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")#
+	#lines(c(0,1),c(0.03676,0.03676),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 100#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   #lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")#
+	#lines(c(0,1),c(0.03676,0.03676),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 500#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	B<-read.table("SLSE.txt")#
+  	C<-read.table("CI_LSE.txt")#
+  	D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   #lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")#
+	#lines(c(0,1),c(0.03676,0.03676),col="red")
+plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   #lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20)
+plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20)
+B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20)
+plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20)
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 500#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+  	#E<-read.table("data.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")#
+	#lines(c(0,1),c(0.03676,0.03676),col="red")
+plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20)
+u<-D[,1]#
+   	v<-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.0,0.5), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.05,0.05),col="red")#
+	#lines(c(0,1),c(0.03676,0.03676),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 500#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+  	#E<-read.table("data.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-1-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.5,1), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.95,0.95),col="red")#
+	#lines(c(0,1),c(0.03676,0.03676),col="red")
+plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20)
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 500#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+  	#E<-read.table("data.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-1-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.5,1), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.95,0.95),col="red")#
+	#lines(c(0,1),c(0.03676,0.03676),col="red")
+plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)
+u<-D[,1]#
+   	v<-1-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.5,1), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.95,0.95),col="red")#
+	#lines(c(0,1),c(0.03676,0.03676),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 500#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+  	#E<-read.table("data.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-1-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.5,1), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.95,0.95),col="red")#
+	#lines(c(0,1),c(0.03676,0.03676),col="red")
+plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20)
+plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   points(u1,v1,pch = 20)
+plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20)
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 500#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+  	#E<-read.table("data.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-1-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.5,1), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.95,0.95),col="red")#
+	#lines(c(0,1),c(0.03676,0.03676),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 100#
+	bandwidth <- n^(-1/5)#
+ 	output <- classic_bootstrap(n,bandwidth)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+  	#E<-read.table("data.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-1-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.5,1), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.95,0.95),col="red")#
+	#lines(c(0,1),c(0.96324,0.96324),col="red")
+library(Rcpp)#
+	sourceCpp("classic+smooth.cpp")#
+	n <- 100#
+	bandwidth <- n^(-1/5)#
+ 	output <- correlation_percentile(n)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+  	#E<-read.table("data.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-1-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.5,1), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.95,0.95),col="red")#
+	#lines(c(0,1),c(0.96324,0.96324),col="red")
+library(Rcpp)#
+	sourceCpp("correlation_percentile.cpp")#
+	n <- 100#
+ 	output <- correlation_percentile(n)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+  	#E<-read.table("data.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-1-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.5,1), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.95,0.95),col="red")#
+	#lines(c(0,1),c(0.96324,0.96324),col="red")
+library(Rcpp)#
+	sourceCpp("correlation_percentile.cpp")#
+	n <- 1000#
+ 	output <- correlation_percentile(n)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+  	#E<-read.table("data.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-1-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.5,1), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.95,0.95),col="red")#
+	#lines(c(0,1),c(0.96324,0.96324),col="red")
+D<-read.table("test.txt")#
+   	x<-D[,1]#
+   	m<-mean(x)#
+   	std<-sqrt(var(x))#
+    hist(x,ylab=NULL,xlab=NULL,main=NULL,freq = FALSE,las=1)
+library(Rcpp)#
+	sourceCpp("correlation_percentile.cpp")#
+	n <- 1000#
+ 	output <- correlation_percentile(n)#
+	B <- output$LSE#
+	C <- output$CI_LSE#
+	D <- output$percentages#
+	E <- output$data#
+	#B<-read.table("SLSE.txt")#
+  	#C<-read.table("CI_LSE.txt")#
+  	#D<-read.table("percentages.txt")#
+  	#E<-read.table("data.txt")#
+   x1<-B[,1]#
+   z1<-B[,2]#
+   x2<-C[,1]#
+   y1<-C[,2]#
+   y2<-C[,3]#
+   y3<-C[,4]#
+   u1<-E[,1]#
+   v1<-E[,2]#
+   f <- function(x) {x^2+x/5}#
+   x0 <-seq(0,1,by=0.01)#
+   y0<-f(x0)#
+   plot(c(-100,-100),xlim=c(0,1), ylim=c(min(y2),max(y3)), main= "",ylab="",xlab="",bty="n",las=1)#
+   #lines(x1,z1,lwd=2,type='s')#
+   lines(x2,y1,lwd=2,lty=1,col="blue")#
+   lines(x0, y0,lwd=2,lty=2,col="red")#
+   lines(x2,y2,lwd=1,lty=1,type='s')#
+   lines(x2,y3,lwd=1,lty=1,type='s')#
+   segments(x2,y2,x2,y3)#
+   #points(u1,v1,pch = 20) #
+    u<-D[,1]#
+   	v<-1-D[,2]#
+   	plot(c(-10000,-10000),xlim=c(0.0,1.0), ylim=c(0.5,1), main= "", ylab="",xlab="",bty="n",las=1)#
+	lines(u,v,lty=1)#
+	lines(c(0,1),c(0.95,0.95),col="red")#
+	#lines(c(0,1),c(0.96324,0.96324),col="red")
+D<-read.table("test.txt")#
+   	x<-D[,1]#
+   	m<-mean(x)#
+   	std<-sqrt(var(x))#
+    hist(x,ylab=NULL,xlab=NULL,main=NULL,freq = FALSE,las=1)
